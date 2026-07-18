@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "siteName": "Ghadeer Al-Rawa Water Desalination",
+    "shortName": "Ghadeer Al-Rawa",
+    "tagline": "Integrated water desalination & treatment solutions",
+    "description": "Ghadeer Al-Rawa Water Desalination — design, execution and maintenance of water treatment and desalination systems for homes and commercial and industrial facilities in Riyadh, Saudi Arabia."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "products": "Products",
+    "sectors": "Sectors",
+    "contact": "Contact"
+  },
+  "common": {
+    "learnMore": "Learn more",
+    "viewAll": "View all",
+    "getQuote": "Get a quote",
+    "callNow": "Contact us",
+    "switchLang": "العربية",
+    "toggleTheme": "Toggle theme",
+    "menu": "Menu"
+  },
+  "hero": {
+    "badge": "Riyadh · Saudi Arabia",
+    "title": "Pure, safe water starts here",
+    "subtitle": "Specialists in the design, execution and maintenance of water treatment and desalination systems for homes and commercial and industrial facilities — highest quality standards and the best global components.",
+    "ctaPrimary": "Get a quote",
+    "ctaSecondary": "Explore our services",
+    "stat1Value": "+10",
+    "stat1Label": "Sectors served",
+    "stat2Value": "100%",
+    "stat2Label": "Quality commitment",
+    "stat3Value": "24/7",
+    "stat3Label": "Technical support"
+  },
+  "about": {
+    "badge": "About us",
+    "title": "Engineering expertise for water",
+    "lead": "A company specialized in the design, execution and maintenance of water treatment and desalination systems.",
+    "body": "Ghadeer Al-Rawa Water Desalination is a company specialized in the design, execution and maintenance of water treatment and desalination systems. We deliver integrated solutions for homes and commercial and industrial facilities, committed to the highest quality standards and using the best global components to ensure pure, safe water.",
+    "visionTitle": "Our Vision",
+    "vision": "To be among the leading companies in water treatment and desalination in Saudi Arabia, by delivering innovative and sustainable solutions.",
+    "missionTitle": "Our Mission",
+    "mission": "To provide safe, pure water through reliable engineering solutions, committed to quality and customer service."
+  },
+  "whyUs": {
+    "badge": "Why us",
+    "title": "Why choose Ghadeer Al-Rawa?",
+    "lead": "Reasons that make us the trusted choice for water solutions.",
+    "items": [
+      { "title": "Specialized technical expertise", "desc": "An experienced engineering team in water treatment and desalination systems." },
+      { "title": "Solutions based on water analysis", "desc": "Every system is designed from a precise analysis of the water source." },
+      { "title": "High-quality equipment", "desc": "We rely on the best global components for performance and longevity." },
+      { "title": "Workmanship warranty", "desc": "We guarantee execution quality and your peace of mind after installation." },
+      { "title": "After-sales service", "desc": "Regular follow-up and maintenance keep your system efficient." },
+      { "title": "Fast execution", "desc": "On-time commitment and professional delivery without delays." },
+      { "title": "Technical support & consulting", "desc": "We guide you with engineering advice from idea to operation." }
+    ]
+  },
+  "services": {
+    "badge": "Services",
+    "title": "Integrated water treatment services",
+    "lead": "From home filters to industrial and sea-water desalination stations.",
+    "items": [
+      { "title": "Home water filter installation", "desc": "Professional installation of home water filters of all types." },
+      { "title": "Maintenance of all water filters", "desc": "Scheduled and emergency maintenance for every filter type." },
+      { "title": "Industrial RO station design & execution", "desc": "Industrial reverse-osmosis stations at capacities tailored to need." },
+      { "title": "Sea-water desalination stations", "desc": "High-efficiency Sea Water RO systems to desalinate seawater." },
+      { "title": "Pre-treatment systems", "desc": "Sand, carbon filters and softeners to protect and extend the system." },
+      { "title": "Iron, manganese, sulfur & silica removal", "desc": "Specialized systems to remove elements and impurities from water." },
+      { "title": "UV sterilization systems", "desc": "Safe UV water sterilization with no chemicals." },
+      { "title": "Chlorine & chemical dosing systems", "desc": "Precise chlorine and chemical dosing per treatment requirements." },
+      { "title": "CIP membrane cleaning systems", "desc": "Clean-in-place (CIP) systems to maintain membrane efficiency." },
+      { "title": "Spare parts, pumps & membranes supply", "desc": "Supply of genuine, high-quality spare parts, pumps and membranes." },
+      { "title": "Periodic maintenance contracts", "desc": "Maintenance contracts that keep your system running efficiently." }
+    ]
+  },
+  "products": {
+    "badge": "Products",
+    "title": "Reliable products & solutions",
+    "lead": "A complete range of water treatment and desalination systems and components.",
+    "items": [
+      { "name": "Home filters" },
+      { "name": "Commercial filters" },
+      { "name": "RO stations" },
+      { "name": "Sea Water stations" },
+      { "name": "Membranes" },
+      { "name": "High-pressure pumps" },
+      { "name": "Sand & carbon filters" },
+      { "name": "Softeners" },
+      { "name": "Tanks" },
+      { "name": "UV systems" },
+      { "name": "Spare parts & accessories" }
+    ]
+  },
+  "sectors": {
+    "badge": "Sectors",
+    "title": "Sectors we serve",
+    "lead": "Water solutions designed for every sector's needs.",
+    "items": [
+      "Homes",
+      "Villas",
+      "Factories",
+      "Hospitals",
+      "Schools",
+      "Hotels",
+      "Restaurants",
+      "Farms",
+      "Government projects"
+    ]
+  },
+  "workStages": {
+    "badge": "How we work",
+    "title": "Our work stages",
+    "lead": "A clear methodology from analysis to maintenance.",
+    "items": [
+      { "title": "Water analysis", "desc": "Precise testing of the water source to define the right solution." },
+      { "title": "Client needs study", "desc": "Understanding your requirements, consumption and purpose." },
+      { "title": "System design", "desc": "Custom engineering design matched to the water and need." },
+      { "title": "Supply & installation", "desc": "Supplying components and installing them professionally." },
+      { "title": "Commissioning & testing", "desc": "Running the system and testing the resulting water quality." },
+      { "title": "Follow-up & maintenance", "desc": "Regular follow-up and maintenance to sustain performance." }
+    ]
+  },
+  "gallery": {
+    "badge": "Our work",
+    "title": "A glimpse of our projects",
+    "lead": "Hover across the images to browse, and click any image to view it in full."
+  },
+  "cta": {
+    "title": "Ready to bring pure water to your project",
+    "subtitle": "Contact us today for a free consultation and quote tailored to your needs.",
+    "whatsapp": "Chat on WhatsApp",
+    "email": "Email us"
+  },
+  "contact": {
+    "badge": "Contact",
+    "title": "We're here to help",
+    "lead": "Reach us via WhatsApp or email and we'll get back to you as soon as possible.",
+    "whatsappLabel": "WhatsApp",
+    "emailLabel": "Email",
+    "hoursLabel": "Working hours",
+    "hoursValue": "Sat – Thu · 9 AM – 6 PM",
+    "addressLabel": "Location",
+    "addressValue": "Riyadh, Saudi Arabia",
+    "followUs": "Follow us"
+  },
+  "footer": {
+    "about": "A company specialized in the design, execution and maintenance of water treatment and desalination systems for homes and commercial and industrial facilities in Saudi Arabia.",
+    "quickLinks": "Quick links",
+    "contactTitle": "Contact",
+    "rights": "All rights reserved",
+    "crLabel": "CR",
+    "vatLabel": "VAT",
+    "madeBy": "Designed & developed by"
+  }
+}

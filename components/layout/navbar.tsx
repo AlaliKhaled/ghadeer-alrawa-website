@@ -1,33 +1,45 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useLenis } from "lenis/react";
 import { Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 import { Logo } from "@/components/layout/logo";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { LanguageToggle } from "@/components/layout/language-toggle";
 import { buttonClasses } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+// Every entry maps to a section on the home page (see app/[locale]/page.tsx).
 const links = [
-  { href: "/", key: "home", id: "home" },
-  { href: "/about", key: "about", id: "about" },
-  { href: "/services", key: "services", id: "services" },
-  { href: "/products", key: "products", id: "products" },
-  { href: "/sectors", key: "sectors", id: "sectors" },
-  { href: "/contact", key: "contact", id: "contact" },
+  { id: "home", key: "home" },
+  { id: "about", key: "about" },
+  { id: "services", key: "services" },
+  { id: "products", key: "products" },
+  { id: "sectors", key: "sectors" },
+  { id: "contact", key: "contact" },
 ] as const;
 
 export function Navbar() {
   const t = useTranslations("nav");
   const tCommon = useTranslations("common");
   const tMeta = useTranslations("meta");
+  const locale = useLocale();
   const pathname = usePathname();
+  const lenis = useLenis();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState("home");
   const onHome = pathname === "/";
+
+  // Locale-aware home URL ("/" for Arabic, "/en" for English).
+  const homeHref = locale === routing.defaultLocale ? "/" : `/${locale}`;
+  const hrefFor = (id: string) =>
+    id === "home"
+      ? homeHref
+      : `${homeHref === "/" ? "" : homeHref}/#${id}`;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -36,8 +48,8 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Scroll-spy: on the home page the active nav item follows the section
-  // crossing a thin band near the top of the viewport.
+  // Scroll-spy: the active nav item follows the section crossing a thin band
+  // near the top of the viewport.
   useEffect(() => {
     if (!onHome) return;
     const sections = links
@@ -59,6 +71,29 @@ export function Navbar() {
 
   useEffect(() => setOpen(false), [pathname]);
 
+  // On the home page, smooth-scroll to the section instead of navigating away.
+  // Elsewhere, let the browser follow the link to the home page + hash.
+  const handleNav =
+    (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+      setOpen(false);
+      if (!onHome) return;
+      e.preventDefault();
+      if (id === "home") {
+        if (lenis) lenis.scrollTo(0);
+        else window.scrollTo({ top: 0, behavior: "smooth" });
+        window.history.replaceState(null, "", homeHref);
+        return;
+      }
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (lenis) lenis.scrollTo(el, { offset: -80 });
+      else el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.replaceState(null, "", hrefFor(id));
+    };
+
+  const isActive = (id: string) =>
+    onHome ? activeId === id : pathname === `/${id}`;
+
   return (
     <header
       className={cn(
@@ -69,30 +104,28 @@ export function Navbar() {
       )}
     >
       <nav className="container-px flex h-16 items-center justify-between gap-4">
-        <Link href="/" aria-label={tMeta("siteName")}>
+        <a href={homeHref} onClick={handleNav("home")} aria-label={tMeta("siteName")}>
           <Logo name={tMeta("shortName")} tagline={tMeta("tagline")} />
-        </Link>
+        </a>
 
         {/* Desktop links */}
         <ul className="hidden items-center gap-1 lg:flex">
-          {links.map((l) => {
-            const active = onHome ? activeId === l.id : pathname === l.href;
-            return (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className={cn(
-                    "rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                    active
-                      ? "bg-cyan/10 text-cyan"
-                      : "text-fg-muted hover:bg-bg-soft hover:text-fg",
-                  )}
-                >
-                  {t(l.key)}
-                </Link>
-              </li>
-            );
-          })}
+          {links.map((l) => (
+            <li key={l.id}>
+              <a
+                href={hrefFor(l.id)}
+                onClick={handleNav(l.id)}
+                className={cn(
+                  "rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                  isActive(l.id)
+                    ? "bg-cyan/10 text-cyan"
+                    : "text-fg-muted hover:bg-bg-soft hover:text-fg",
+                )}
+              >
+                {t(l.key)}
+              </a>
+            </li>
+          ))}
         </ul>
 
         <div className="flex items-center gap-2">
@@ -100,7 +133,7 @@ export function Navbar() {
           <ThemeToggle />
           <Link
             href="/contact"
-            className={cn(buttonClasses("primary", "md"), "hidden md:inline-flex")}
+            className={cn(buttonClasses("primary", "md"), "hidden lg:inline-flex")}
           >
             {tCommon("getQuote")}
           </Link>
@@ -120,24 +153,30 @@ export function Navbar() {
       {open ? (
         <div className="border-t border-border bg-bg lg:hidden">
           <ul className="container-px flex flex-col gap-1 py-4">
-            {links.map((l) => {
-              const active = onHome ? activeId === l.id : pathname === l.href;
-              return (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className={cn(
-                      "block rounded-xl px-4 py-3 text-sm font-medium",
-                      active
-                        ? "bg-cyan/10 text-cyan"
-                        : "text-fg hover:bg-bg-soft",
-                    )}
-                  >
-                    {t(l.key)}
-                  </Link>
-                </li>
-              );
-            })}
+            {links.map((l) => (
+              <li key={l.id}>
+                <a
+                  href={hrefFor(l.id)}
+                  onClick={handleNav(l.id)}
+                  className={cn(
+                    "block rounded-xl px-4 py-3 text-sm font-medium",
+                    isActive(l.id)
+                      ? "bg-cyan/10 text-cyan"
+                      : "text-fg hover:bg-bg-soft",
+                  )}
+                >
+                  {t(l.key)}
+                </a>
+              </li>
+            ))}
+            <li className="mt-2">
+              <Link
+                href="/contact"
+                className={cn(buttonClasses("primary", "md"), "w-full")}
+              >
+                {tCommon("getQuote")}
+              </Link>
+            </li>
           </ul>
         </div>
       ) : null}

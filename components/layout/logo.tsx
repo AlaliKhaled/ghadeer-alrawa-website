@@ -53,9 +53,11 @@ export function Logo({
     <span className={cn("flex items-center gap-2.5", className)}>
       <LogoMark className="h-9 shrink-0" />
       <span className="flex flex-col leading-none">
-        <span className="text-base font-extrabold text-fg">{name}</span>
+        <span className="whitespace-nowrap text-base font-extrabold text-fg">
+          {name}
+        </span>
         {tagline ? (
-          <span className="mt-0.5 text-[11px] font-medium text-cyan">
+          <span className="mt-0.5 hidden whitespace-nowrap text-[11px] font-medium text-cyan lg:block">
             {tagline}
           </span>
         ) : null}

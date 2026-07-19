@@ -40,7 +40,7 @@ export function TypewriterHeading({
       variants={container}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-90px" }}
+      viewport={{ once: false, margin: "-90px" }}
     >
       {words.map((w, i) => (
         <span key={`${w}-${i}`}>

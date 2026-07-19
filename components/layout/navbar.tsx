@@ -65,7 +65,7 @@ export function Navbar() {
         "sticky top-0 z-50 border-b transition-colors duration-300",
         scrolled
           ? "border-border bg-bg/85 backdrop-blur-md"
-          : "border-transparent bg-bg/60 backdrop-blur-sm",
+          : "border-transparent bg-transparent",
       )}
     >
       <nav className="container-px flex h-16 items-center justify-between gap-4">
@@ -96,9 +96,7 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <div className="hidden sm:block">
-            <LanguageToggle />
-          </div>
+          <LanguageToggle />
           <ThemeToggle />
           <Link
             href="/contact"
@@ -140,9 +138,6 @@ export function Navbar() {
                 </li>
               );
             })}
-            <li className="mt-2 flex items-center gap-2">
-              <LanguageToggle />
-            </li>
           </ul>
         </div>
       ) : null}

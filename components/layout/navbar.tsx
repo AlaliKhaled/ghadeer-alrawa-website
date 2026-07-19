@@ -31,6 +31,7 @@ export function Navbar() {
   const lenis = useLenis();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [activeId, setActiveId] = useState("home");
   const onHome = pathname === "/";
 
@@ -41,8 +42,17 @@ export function Navbar() {
       ? homeHref
       : `${homeHref === "/" ? "" : homeHref}/#${id}`;
 
+  // Track scroll: fade in the background past the top, and hide the header when
+  // scrolling down / reveal it when scrolling up.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      if (y > last && y > 120) setHidden(true);
+      else if (y < last) setHidden(false);
+      last = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -97,10 +107,11 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b transition-colors duration-300",
+        "sticky top-0 z-50 border-b transition-[transform,background-color,border-color] duration-300 will-change-transform",
         scrolled
           ? "border-border bg-bg/85 backdrop-blur-md"
           : "border-transparent bg-transparent",
+        hidden && !open ? "-translate-y-full" : "translate-y-0",
       )}
     >
       <nav className="container-px flex h-16 items-center justify-between gap-4">
@@ -131,12 +142,13 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <LanguageToggle />
           <ThemeToggle />
-          <Link
-            href="/contact"
-            className={cn(buttonClasses("primary", "md"), "hidden lg:inline-flex")}
-          >
-            {tCommon("getQuote")}
-          </Link>
+          {/* Wrapper (not the button) carries the responsive visibility, so the
+              `hidden` utility isn't overridden by the button's own inline-flex. */}
+          <div className="hidden lg:block">
+            <Link href="/contact" className={buttonClasses("primary", "md")}>
+              {tCommon("getQuote")}
+            </Link>
+          </div>
           <button
             type="button"
             aria-label={tCommon("menu")}

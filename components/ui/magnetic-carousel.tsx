@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useLenis } from "lenis/react";
 import { X } from "lucide-react";
 
 export type CarouselImage = { src: string; alt?: string };
@@ -23,7 +22,6 @@ export function MagneticCarousel({
   const items = images.length ? images : [];
   const [open, setOpen] = useState<number | null>(null);
   const [useDock, setUseDock] = useState(false);
-  const lenis = useLenis();
 
   // Decide layout after mount (SSR + mobile render the swipe strip by default).
   useEffect(() => {
@@ -41,15 +39,12 @@ export function MagneticCarousel({
       if (e.key === "Escape") setOpen(null);
     };
     window.addEventListener("keydown", onKey);
-    // Desktop uses Lenis; touch uses native scroll — lock whichever is active.
-    if (lenis) lenis.stop();
-    else document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
-      if (lenis) lenis.start();
-      else document.body.style.overflow = "";
+      document.body.style.overflow = "";
     };
-  }, [open, lenis]);
+  }, [open]);
 
   if (!items.length) return null;
 

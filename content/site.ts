@@ -1,7 +1,7 @@
 /**
  * Central site configuration.
- * TODO(before launch): replace the placeholder contact details with the
- * client's real WhatsApp number, email, legal info and social links.
+ * TODO(before launch): add the client's social links and confirm the exact
+ * map address / coordinates. Contact details and legal info are live.
  */
 export const site = {
   // Production URL — override via NEXT_PUBLIC_SITE_URL at deploy time.

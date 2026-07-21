@@ -6,7 +6,6 @@ import { Noto_Kufi_Arabic, Outfit } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
-import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { Footer } from "@/components/layout/footer";
 import { WhatsAppFab } from "@/components/layout/whatsapp-fab";
 import { LocalBusinessJsonLd } from "@/components/seo/json-ld";
@@ -88,12 +87,10 @@ export default async function LocaleLayout({
           disableTransitionOnChange
         >
           <NextIntlClientProvider>
-            <SmoothScroll>
-              <Navbar />
-              <main className="flex-1">{children}</main>
-              <Footer />
-              <WhatsAppFab />
-            </SmoothScroll>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <WhatsAppFab />
           </NextIntlClientProvider>
           <LocalBusinessJsonLd
             name={tMeta("siteName")}

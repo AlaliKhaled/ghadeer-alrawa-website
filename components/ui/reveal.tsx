@@ -39,11 +39,9 @@ export function Reveal({
       whileInView="visible"
       // `once: true` reveals each card a single time. With replay (`once:false`)
       // Framer re-arms cards every time they cross the viewport edge, so while
-      // you scroll the ones near the edges are permanently mid-animation —
-      // promoted to their own GPU layer and moved at sub-pixel offsets by
-      // Lenis's fractional scrolling, which is what blurs/jitters their text
-      // until scrolling stops. Animating once keeps them on the main layer and
-      // crisp forever after.
+      // you scroll the ones near the edges are permanently mid-animation and
+      // promoted to their own GPU layer, which blurs/jitters their text.
+      // Animating once keeps them on the main layer and crisp forever after.
       viewport={{ once: true, margin: "-80px" }}
       // Belt-and-suspenders: once the entrance settles, drop any residual
       // `will-change`/`transform` Framer leaves behind so nothing stays

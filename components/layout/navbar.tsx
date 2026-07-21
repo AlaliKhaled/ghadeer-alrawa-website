@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { useLenis } from "lenis/react";
 import { Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
@@ -29,7 +28,6 @@ export function Navbar() {
   const tMeta = useTranslations("meta");
   const locale = useLocale();
   const pathname = usePathname();
-  const lenis = useLenis();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -80,7 +78,13 @@ export function Navbar() {
     return () => io.disconnect();
   }, [onHome]);
 
-  useEffect(() => setOpen(false), [pathname]);
+  // Close the mobile menu on navigation. Done during render (React's
+  // recommended way to reset state on a prop change) rather than in an effect.
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    setOpen(false);
+  }
 
   // On the home page, smooth-scroll to the section instead of navigating away.
   // Elsewhere, let the browser follow the link to the home page + hash.
@@ -90,15 +94,14 @@ export function Navbar() {
       if (!onHome) return;
       e.preventDefault();
       if (id === "home") {
-        if (lenis) lenis.scrollTo(0);
-        else window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
         window.history.replaceState(null, "", homeHref);
         return;
       }
       const el = document.getElementById(id);
       if (!el) return;
-      if (lenis) lenis.scrollTo(el, { offset: -80 });
-      else el.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Sections carry `scroll-mt-20`, so this stops below the sticky header.
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
       window.history.replaceState(null, "", hrefFor(id));
     };
 

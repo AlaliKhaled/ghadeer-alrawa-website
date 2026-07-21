@@ -128,9 +128,12 @@ export function Footer() {
                 {t("vatLabel")}: {site.legal.vat}
               </span>
             ) : null}
-            <span className="text-fg-muted/70">
-              {t("madeBy")} GENIX ID
-            </span>
+            <Link
+              href="/privacy"
+              className="transition-colors hover:text-cyan"
+            >
+              {t("privacy")}
+            </Link>
           </p>
         </div>
       </div>

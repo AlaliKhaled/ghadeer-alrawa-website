@@ -154,6 +154,40 @@
     "rights": "All rights reserved",
     "crLabel": "CR",
     "vatLabel": "VAT",
-    "madeBy": "Designed & developed by"
+    "privacy": "Privacy Policy"
+  },
+  "privacy": {
+    "badge": "Privacy",
+    "title": "Privacy Policy",
+    "lead": "At Ghadeer Al-Rawa we are committed to protecting your privacy. This policy explains what information we collect when you use our website, and how we use and safeguard it.",
+    "updated": "Last updated: July 2026",
+    "contactHeading": "Contact us",
+    "contactBody": "For any question about your privacy, or to request access to, correction of, or deletion of your data, you can reach us at:",
+    "sections": [
+      {
+        "heading": "Information we collect",
+        "body": "When you contact us or request a quote, we may collect the information you provide yourself, such as your name, phone number, email address and the details of your request. We may also automatically collect basic technical data such as your browser type, device and the pages you visit, to improve your experience."
+      },
+      {
+        "heading": "How we use your data",
+        "body": "We use your data to respond to your enquiries, provide quotes and deliver the requested services, and to improve our website and services and communicate with you about your request. We do not use your data for any other purpose without your consent."
+      },
+      {
+        "heading": "Sharing your data",
+        "body": "We do not sell or rent your data to any third party. We may only share it with trusted service providers who help us run our business, or when required by an official authority under the laws of Saudi Arabia."
+      },
+      {
+        "heading": "Data protection & retention",
+        "body": "We take appropriate technical and organizational measures to protect your data from unauthorized access or use. We keep it only for as long as needed to provide the service or as required by law, and then dispose of it securely."
+      },
+      {
+        "heading": "Cookies",
+        "body": "Our website may use essential cookies to ensure it works correctly and to remember your preferences such as language and dark mode. You can set your browser to refuse these cookies without significantly affecting your browsing of the site."
+      },
+      {
+        "heading": "Your rights",
+        "body": "You have the right to request access to, correction of, or deletion of your data at any time. To do so, contact us using the details shown below and we will respond to your request as soon as possible."
+      }
+    ]
   }
 }

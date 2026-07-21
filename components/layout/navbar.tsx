@@ -31,6 +31,7 @@ export function Navbar() {
   const lenis = useLenis();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [activeId, setActiveId] = useState("home");
   const onHome = pathname === "/";
 
@@ -41,9 +42,17 @@ export function Navbar() {
       ? homeHref
       : `${homeHref === "/" ? "" : homeHref}/#${id}`;
 
-  // Give the header a solid background once the page is scrolled past the top.
+  // Track scroll: give the header a solid background past the top, and hide it
+  // when scrolling down / reveal it when scrolling back up.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      if (y > last && y > 120) setHidden(true);
+      else if (y < last) setHidden(false);
+      last = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -98,10 +107,12 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b transition-colors duration-300",
+        "sticky top-0 z-50 border-b transition-[transform,background-color,border-color] duration-300",
         scrolled || open
           ? "border-border bg-bg shadow-sm"
           : "border-transparent bg-transparent",
+        // Keep it visible while the mobile menu is open.
+        hidden && !open ? "-translate-y-full" : "translate-y-0",
       )}
     >
       <nav className="container-px flex h-16 items-center justify-between gap-4">
@@ -117,7 +128,7 @@ export function Navbar() {
                 href={hrefFor(l.id)}
                 onClick={handleNav(l.id)}
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                  "whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors",
                   isActive(l.id)
                     ? "bg-cyan/10 text-cyan"
                     : "text-fg-muted hover:bg-bg-soft hover:text-fg",

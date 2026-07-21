@@ -18,6 +18,7 @@ export function Hero({ locale }: { locale: string }) {
   const backgrounds = [
     { src: "/images/hero-1-indoor-plant.webp", alt: t("title") },
     { src: "/images/hero-2-outdoor-station.webp", alt: t("title") },
+    { src: "/images/work-stages-tech.webp", alt: t("title") },
   ];
 
   return (

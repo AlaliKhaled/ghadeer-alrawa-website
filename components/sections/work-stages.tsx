@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { SectionTitle } from "@/components/ui/section-title";
 import { Reveal } from "@/components/ui/reveal";
@@ -9,9 +10,28 @@ export function WorkStages() {
   const items = t.raw("items") as Item[];
 
   return (
-    <section className="border-y border-border bg-bg-soft py-20">
+    <section className="relative isolate overflow-hidden border-y border-border py-20">
+      {/* Water-treatment technology — decorative background. */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/images/work-stages-tech.webp"
+          alt=""
+          fill
+          sizes="1280px"
+          quality={70}
+          className="object-cover object-center"
+        />
+        {/* Overlay keeps the title + cards readable over the photo. */}
+        <div className="absolute inset-0 bg-navy-deep/55" />
+      </div>
+
       <div className="container-px">
-        <SectionTitle badge={t("badge")} title={t("title")} lead={t("lead")} />
+        <SectionTitle
+          badge={t("badge")}
+          title={t("title")}
+          lead={t("lead")}
+          onDark
+        />
 
         <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item, i) => (

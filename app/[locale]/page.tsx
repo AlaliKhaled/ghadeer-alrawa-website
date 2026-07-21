@@ -37,7 +37,9 @@ export default async function HomePage({
       <div id="sectors" className="scroll-mt-20">
         <SectorsGrid />
       </div>
-      <WhyUs backgroundImage="/images/why-us-drop.webp" />
+      <div id="why-us" className="scroll-mt-20">
+        <WhyUs backgroundImage="/images/why-us-drop.webp" />
+      </div>
       <div id="products" className="scroll-mt-20">
         <ProductsPreview locale={locale} limit={8} />
       </div>

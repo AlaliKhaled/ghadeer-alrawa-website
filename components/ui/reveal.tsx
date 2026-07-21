@@ -37,14 +37,17 @@ export function Reveal({
       variants={variants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, margin: "-80px" }}
-      // Once the entrance settles, drop the residual `will-change`/`transform`
-      // Framer leaves behind. Otherwise the element stays promoted to its own
-      // GPU layer and the compositor moves it at sub-pixel offsets while the
-      // page scrolls — which blurs/jitters the text inside cards until scroll
-      // stops. Clearing it lets the browser re-rasterize the text sharply.
-      // (When it scrolls back out of view, Framer re-applies the hidden state
-      // and the replay animation runs again as before.)
+      // `once: true` reveals each card a single time. With replay (`once:false`)
+      // Framer re-arms cards every time they cross the viewport edge, so while
+      // you scroll the ones near the edges are permanently mid-animation —
+      // promoted to their own GPU layer and moved at sub-pixel offsets by
+      // Lenis's fractional scrolling, which is what blurs/jitters their text
+      // until scrolling stops. Animating once keeps them on the main layer and
+      // crisp forever after.
+      viewport={{ once: true, margin: "-80px" }}
+      // Belt-and-suspenders: once the entrance settles, drop any residual
+      // `will-change`/`transform` Framer leaves behind so nothing stays
+      // GPU-promoted.
       onAnimationComplete={(definition) => {
         if (definition !== "visible") return;
         const el = ref.current;

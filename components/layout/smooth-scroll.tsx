@@ -1,44 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { ReactLenis } from "lenis/react";
 import type { ReactNode } from "react";
-import "lenis/dist/lenis.css";
 
 /**
- * Inertial smooth scrolling for pointer (desktop) devices only. On touch
- * devices it stays out of the way so the browser's own scrolling works
- * normally — smoothing touch tends to feel "stuck" and can trap scroll after
- * navigating between pages. Also disabled for prefers-reduced-motion.
+ * Native scrolling only.
+ *
+ * We previously used Lenis for inertial smooth scrolling, but Lenis scrolls to
+ * fractional pixel positions, which makes the browser rasterize text at
+ * sub-pixel offsets: body text and card titles blur / "pixel snap" while
+ * scrolling and only snap back sharp once it stops. Native scrolling keeps
+ * every glyph on whole pixels, so the text stays crisp in every situation.
+ *
+ * Kept as a thin pass-through wrapper so `layout.tsx` doesn't need to change,
+ * and so smooth in-page navigation still works: `useLenis()` now returns
+ * undefined everywhere, and the callers already fall back to the browser's
+ * native `scrollTo({ behavior: "smooth" })` / scroll locking.
  */
 export function SmoothScroll({ children }: { children: ReactNode }) {
-  const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
-    // Enable only on fine pointers (mouse/trackpad) that don't prefer reduced
-    // motion; touch phones and tablets keep native scrolling.
-    const mq = window.matchMedia(
-      "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
-    );
-    const update = () => setEnabled(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  if (!enabled) return <>{children}</>;
-
-  return (
-    <ReactLenis
-      root
-      options={{
-        duration: 1.1,
-        lerp: 0.1,
-        smoothWheel: true,
-        wheelMultiplier: 1,
-      }}
-    >
-      {children}
-    </ReactLenis>
-  );
+  return <>{children}</>;
 }

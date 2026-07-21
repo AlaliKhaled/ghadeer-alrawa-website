@@ -13,8 +13,8 @@ import {
 const navLinks = [
   { href: "/about", key: "about" },
   { href: "/services", key: "services" },
-  { href: "/products", key: "products" },
   { href: "/sectors", key: "sectors" },
+  { href: "/products", key: "products" },
   { href: "/contact", key: "contact" },
 ] as const;
 

@@ -17,8 +17,8 @@ const links = [
   { id: "home", key: "home" },
   { id: "about", key: "about" },
   { id: "services", key: "services" },
-  { id: "products", key: "products" },
   { id: "sectors", key: "sectors" },
+  { id: "products", key: "products" },
   { id: "contact", key: "contact" },
 ] as const;
 

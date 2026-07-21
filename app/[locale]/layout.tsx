@@ -84,8 +84,7 @@ export default async function LocaleLayout({
       <body className="flex min-h-full flex-col bg-bg text-fg">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem
+          defaultTheme="dark"
           disableTransitionOnChange
         >
           <NextIntlClientProvider>

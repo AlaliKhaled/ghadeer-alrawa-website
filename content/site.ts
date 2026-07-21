@@ -8,16 +8,17 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ghadeer-alrawa.com",
 
   contact: {
-    // Placeholder — Saudi WhatsApp number, digits only, no "+".
-    whatsapp: "966500000000",
-    email: "info@ghadeer-alrawa.com",
-    phoneDisplay: "+966 50 000 0000",
+    // Saudi WhatsApp number, digits only, no "+".
+    whatsapp: "966555943421",
+    email: "ghadiralrawa@gmail.com",
+    phoneDisplay: "+966 55 594 3421",
   },
 
-  // Placeholder legal info shown in the footer (KSA credibility).
+  // Legal info shown in the footer (KSA credibility). Leave a field empty
+  // ("") to hide its line in the footer.
   legal: {
-    cr: "0000000000",
-    vat: "000000000000000",
+    cr: "7054509588",
+    vat: "",
   },
 
   // Leave a social entry empty ("") to hide it.

@@ -123,9 +123,11 @@ export function Footer() {
             <span>
               {t("crLabel")}: {site.legal.cr}
             </span>
-            <span>
-              {t("vatLabel")}: {site.legal.vat}
-            </span>
+            {site.legal.vat ? (
+              <span>
+                {t("vatLabel")}: {site.legal.vat}
+              </span>
+            ) : null}
             <span className="text-fg-muted/70">
               {t("madeBy")} GENIX ID
             </span>

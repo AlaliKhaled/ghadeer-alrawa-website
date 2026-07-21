@@ -93,7 +93,7 @@ export function Footer() {
                 rel="noopener noreferrer"
               >
                 <Phone className="h-4 w-4 shrink-0 text-cyan" />
-                {site.contact.phoneDisplay}
+                <span dir="ltr">{site.contact.phoneDisplay}</span>
               </a>
             </li>
             <li>

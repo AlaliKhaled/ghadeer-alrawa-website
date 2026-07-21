@@ -57,7 +57,7 @@ export default async function ContactPage({
               className={buttonClasses("whatsapp", "lg", "w-full")}
             >
               <WhatsAppIcon className="h-5 w-5" />
-              {t("whatsappLabel")} · {site.contact.phoneDisplay}
+              {t("whatsappLabel")} · <span dir="ltr">{site.contact.phoneDisplay}</span>
             </a>
 
             <InfoCard

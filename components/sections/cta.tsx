@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Mail } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
@@ -10,10 +11,18 @@ export function CTA() {
   return (
     <section className="container-px py-20">
       <Reveal>
-        <div className="relative overflow-hidden rounded-3xl brand-gradient px-6 py-14 text-center sm:px-12">
-          <div className="pointer-events-none absolute inset-0 opacity-20">
-            <div className="absolute -top-16 start-10 h-56 w-56 rounded-full bg-white blur-3xl" />
-            <div className="absolute -bottom-20 end-10 h-64 w-64 rounded-full bg-aqua blur-3xl" />
+        <div className="relative isolate overflow-hidden rounded-3xl px-6 py-14 text-center sm:px-12">
+          {/* Vision 2030 desalination facility background + brand tint. */}
+          <div className="absolute inset-0 -z-10">
+            <Image
+              src="/images/vision-2030-facility.webp"
+              alt=""
+              fill
+              sizes="(max-width: 1024px) 100vw, 1024px"
+              quality={75}
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-navy-deep/90 via-navy/80 to-cyan/60" />
           </div>
           <div className="relative">
             <h2 className="mx-auto max-w-2xl text-3xl font-extrabold text-white sm:text-4xl">
